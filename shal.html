@@ -100,5 +100,19 @@
 </footer>
 
 <script src="main.js"></script>
+<button id="faq-toggle" aria-label="اسأل عن الفنانين الثلاثة" aria-expanded="false"><i class="fa-solid fa-comment-dots"></i></button>
+<div id="faq-panel" role="dialog" aria-label="أسئلة عن الفنانين الثلاثة">
+  <div class="faq-head">
+    <span><i class="fa-solid fa-scroll"></i>اسأل عن الفنانين الثلاثة</span>
+    <button id="faq-close" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="faq-search-wrap">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" id="faq-search" placeholder="دوّر على سؤال...">
+  </div>
+  <div class="faq-list" id="faqList"></div>
+</div>
+<script src="bot.js"></script>
+
 </body>
 </html>
