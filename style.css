@@ -15,6 +15,29 @@
   --radius-lg:22px;
   --radius-md:14px;
   --container:1180px;
+
+  /* fixed tokens: stay constant across themes (footer stays a stable dark band) */
+  --footer-bg:#3E2B1E;
+  --footer-text:#F3E9D6;
+}
+
+/* ===================== Dark theme ===================== */
+:root[data-theme="dark"]{
+  --clay:#DD8B5D;
+  --clay-dark:#F0AC81;
+  --clay-soft:#5B3A26;
+  --pistachio:#AEBB8C;
+  --pistachio-dark:#CBD6AC;
+  --beige:#221812;
+  --cream:#2E2219;
+  --ink:#F3E9D6;
+  --ink-soft:#C9B79E;
+  --gold:#E2B876;
+  --border-soft:rgba(243,233,214,.14);
+  --shadow-soft:0 12px 30px -12px rgba(0,0,0,.55);
+}
+:root[data-theme="dark"] body{
+  background-image:radial-gradient(circle at 1px 1px, rgba(243,233,214,.05) 1px, transparent 1px);
 }
 
 *,*::before,*::after{box-sizing:border-box;}
@@ -82,6 +105,15 @@ body{
 .nav-links a:hover{background:rgba(181,98,58,.1);color:var(--clay-dark);}
 .nav-links a.active{background:var(--clay);color:var(--cream);}
 #nav-toggle{display:none;background:none;border:1px solid var(--border-soft);border-radius:10px;width:42px;height:42px;font-size:1.1rem;color:var(--ink);cursor:pointer;}
+#theme-toggle{
+  background:none;border:1px solid var(--border-soft);border-radius:10px;
+  width:42px;height:42px;font-size:1rem;color:var(--clay);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;margin-inline-start:8px;
+  transition:background .25s,transform .25s;flex:none;
+}
+#theme-toggle:hover{background:rgba(181,98,58,.1);transform:rotate(-14deg);}
+:root[data-theme="dark"] #theme-toggle i.fa-moon{display:none;}
+:root:not([data-theme="dark"]) #theme-toggle i.fa-sun{display:none;}
 
 @media (max-width:860px){
   .nav-links{
@@ -226,7 +258,7 @@ body{
 }
 
 /* ===================== Footer ===================== */
-footer{background:var(--ink);color:var(--beige);padding:44px 0 30px;text-align:center;}
+footer{background:var(--footer-bg);color:var(--footer-text);padding:44px 0 30px;text-align:center;}
 footer .f-brand{font-weight:700;font-size:1.05rem;color:var(--cream);margin-bottom:8px;}
 footer p{color:rgba(243,233,214,.65);font-size:.88rem;}
 footer .f-links{margin-top:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:18px;font-size:.85rem;}
