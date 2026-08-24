@@ -19,6 +19,7 @@
   /* fixed tokens: stay constant across themes (footer stays a stable dark band) */
   --footer-bg:#3E2B1E;
   --footer-text:#F3E9D6;
+  --cream-rgb:251,245,234;
 }
 
 /* ===================== Dark theme ===================== */
@@ -35,6 +36,7 @@
   --gold:#E2B876;
   --border-soft:rgba(243,233,214,.14);
   --shadow-soft:0 12px 30px -12px rgba(0,0,0,.55);
+  --cream-rgb:46,34,25;
 }
 :root[data-theme="dark"] body{
   background-image:radial-gradient(circle at 1px 1px, rgba(243,233,214,.05) 1px, transparent 1px);
@@ -86,7 +88,7 @@ body{
 /* ===================== Navbar ===================== */
 #navbar{
   position:sticky; top:0; z-index:1000;
-  background:rgba(251,245,234,.68);
+  background:rgba(var(--cream-rgb),.68);
   backdrop-filter:blur(14px) saturate(140%);
   -webkit-backdrop-filter:blur(14px) saturate(140%);
   border-bottom:1px solid var(--border-soft);
@@ -118,7 +120,7 @@ body{
 @media (max-width:860px){
   .nav-links{
     position:fixed; inset:64px 0 auto 0; margin:0 12px;
-    background:rgba(251,245,234,.97); backdrop-filter:blur(14px);
+    background:rgba(var(--cream-rgb),.97); backdrop-filter:blur(14px);
     border:1px solid var(--border-soft); border-radius:var(--radius-md);
     flex-direction:column; padding:10px; box-shadow:var(--shadow-soft);
     transform:translateY(-14px); opacity:0; pointer-events:none; transition:.25s ease;
