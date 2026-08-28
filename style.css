@@ -114,7 +114,9 @@ body{
   display:flex;align-items:center;justify-content:center;margin-inline-start:8px;
   transition:background .25s,transform .25s;flex:none;
 }
-#theme-toggle:hover{background:rgba(181,98,58,.1);transform:rotate(-14deg);}
+@media (hover:hover) and (pointer:fine){
+  #theme-toggle:hover{background:rgba(181,98,58,.1);transform:rotate(-14deg);}
+}
 :root[data-theme="dark"] #theme-toggle i.fa-moon{display:none;}
 :root:not([data-theme="dark"]) #theme-toggle i.fa-sun{display:none;}
 
@@ -157,14 +159,18 @@ body{
   padding:36px 26px; text-align:center; box-shadow:var(--shadow-soft);
   transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
 }
-.picker-card:hover{transform:translateY(-6px); background:var(--cream); box-shadow:0 18px 40px -14px rgba(62,43,30,.32);}
+@media (hover:hover) and (pointer:fine){
+  .picker-card:hover{transform:translateY(-6px); background:var(--cream); box-shadow:0 18px 40px -14px rgba(62,43,30,.32);}
+}
 .picker-card .p-icon{margin:0 auto 20px;}
 .picker-card h3{font-size:1.3rem;color:var(--clay-dark);margin-bottom:6px;}
 .picker-card .p-role{font-weight:700;font-size:.85rem;color:var(--pistachio-dark);margin-bottom:10px;}
 .picker-card .p-dates{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px;}
 .picker-card .p-cta{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--clay);font-size:.92rem;}
 .picker-card .p-cta i{transition:transform .25s;}
-.picker-card:hover .p-cta i{transform:translateX(-4px);}
+@media (hover:hover) and (pointer:fine){
+  .picker-card:hover .p-cta i{transform:translateX(-4px);}
+}
 
 .vision-cta{
   max-width:640px;margin:52px auto 0;text-align:center;
@@ -219,8 +225,10 @@ body{
   background:var(--cream);border:1px solid var(--border-soft);box-shadow:var(--shadow-soft);
   font-weight:700;color:var(--ink);transition:transform .25s,background .25s;flex:1 1 220px;
 }
-.page-nav a:hover{background:var(--clay);color:var(--cream);transform:translateY(-3px);}
-.page-nav a:hover i{color:var(--cream);}
+@media (hover:hover) and (pointer:fine){
+  .page-nav a:hover{background:var(--clay);color:var(--cream);transform:translateY(-3px);}
+  .page-nav a:hover i{color:var(--cream);}
+}
 .page-nav a i{color:var(--clay);transition:color .25s;}
 .page-nav .next{justify-content:flex-end;text-align:left;}
 .page-nav .prev{justify-content:flex-start;}
