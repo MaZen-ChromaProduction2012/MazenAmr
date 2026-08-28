@@ -346,6 +346,7 @@ footer .f-links a:hover{color:var(--gold);}
   border-radius:50%; background:var(--cream); border:2px solid var(--gold);
   display:flex; align-items:center; justify-content:center; color:var(--clay);
 }
+.avatar-img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
 
 .avatar-sabry{background:linear-gradient(135deg,var(--clay),var(--gold));}
 .avatar-wissa{background:linear-gradient(135deg,var(--pistachio-dark),var(--clay));}
