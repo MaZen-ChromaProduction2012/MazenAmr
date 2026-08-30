@@ -374,15 +374,8 @@ footer .f-links a:hover{color:var(--gold);}
 
 /* ===================== Further Reading (external sources) ===================== */
 .more-links{margin-top:46px;padding-top:32px;border-top:1px dashed var(--border-soft);text-align:center;}
-.more-links .more-title{font-weight:800;font-size:1.02rem;color:var(--clay-dark);margin-bottom:16px;}
-.more-link-chip{
-  display:inline-flex;align-items:center;gap:9px;padding:11px 22px;border-radius:999px;
-  background:var(--cream);border:1px solid var(--border-soft);color:var(--clay-dark);
-  font-weight:700;font-size:.92rem;box-shadow:var(--shadow-soft);
-}
-.more-link-chip i{color:var(--clay);font-size:.8rem;}
-.more-links .more-note{margin-top:12px;font-size:.8rem;color:var(--ink-soft);}
+.more-links .more-text{font-size:1.08rem;color:var(--ink-soft);}
+.more-inline-link{color:var(--clay);font-weight:800;text-decoration:underline;text-underline-offset:4px;}
 @media (hover:hover) and (pointer:fine){
-  .more-link-chip:hover{background:var(--clay);color:var(--cream);}
-  .more-link-chip:hover i{color:var(--cream);}
+  .more-inline-link:hover{color:var(--clay-dark);}
 }
