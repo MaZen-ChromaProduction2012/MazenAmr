@@ -260,8 +260,8 @@ body{
 }
 
 /* ===================== Footer ===================== */
-footer{background:var(--footer-bg);color:var(--footer-text);padding:44px 0 30px;text-align:center;}
-footer .f-brand{font-weight:700;font-size:1.05rem;color:var(--cream);margin-bottom:8px;}
+footer{background:linear-gradient(180deg, var(--beige), var(--footer-bg) 110px);color:var(--footer-text);padding:44px 0 30px;text-align:center;}
+footer .f-brand{font-weight:700;font-size:1.05rem;color:var(--footer-text);margin-bottom:8px;}
 footer p{color:rgba(243,233,214,.65);font-size:.88rem;}
 footer .f-links{margin-top:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:18px;font-size:.85rem;}
 footer .f-links a{color:rgba(243,233,214,.8);transition:color .2s;}
@@ -276,7 +276,9 @@ footer .f-links a:hover{color:var(--gold);}
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 10px 26px -8px rgba(62,43,30,.45);
   animation:faqPulse 2.6s ease-in-out infinite;
+  transition:transform .35s ease, opacity .35s ease;
 }
+#faq-toggle.faq-hidden{transform:translateX(-140%); opacity:0; pointer-events:none; animation:none;}
 @keyframes faqPulse{
   0%,100%{box-shadow:0 10px 26px -8px rgba(62,43,30,.45), 0 0 0 0 rgba(181,98,58,.35);}
   50%{box-shadow:0 10px 26px -8px rgba(62,43,30,.45), 0 0 0 10px rgba(181,98,58,0);}

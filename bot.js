@@ -130,4 +130,20 @@
       renderList(filtered);
     });
   }
+
+  // hide the floating button (slide it off-screen) once the footer area is reached
+  var footerEl = document.querySelector('footer');
+  if(footerEl && 'IntersectionObserver' in window){
+    var footerObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          toggle.classList.add('faq-hidden');
+          if(panel.classList.contains('open')) closePanel();
+        } else {
+          toggle.classList.remove('faq-hidden');
+        }
+      });
+    }, {threshold:0});
+    footerObserver.observe(footerEl);
+  }
 })();
