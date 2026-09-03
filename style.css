@@ -179,9 +179,12 @@ body{
 .vision-cta p{color:var(--ink-soft);margin-bottom:16px;}
 .vision-link{
   display:inline-flex;align-items:center;gap:10px;padding:12px 26px;border-radius:999px;
-  background:var(--ink);color:var(--cream);font-weight:700;font-size:.95rem;transition:background .25s;
+  background:linear-gradient(135deg,var(--clay),var(--gold));color:var(--cream);font-weight:700;font-size:.95rem;
+  box-shadow:var(--shadow-soft); transition:transform .25s;
 }
-.vision-link:hover{background:var(--clay-dark);}
+@media (hover:hover) and (pointer:fine){
+  .vision-link:hover{transform:translateY(-2px);}
+}
 
 @media (max-width:860px){.picker-grid{grid-template-columns:1fr;}}
 
@@ -260,12 +263,12 @@ body{
 }
 
 /* ===================== Footer ===================== */
-footer{background:linear-gradient(180deg, var(--pre-footer, var(--beige)), var(--footer-bg) 110px);color:var(--footer-text);padding:44px 0 30px;text-align:center;}
-footer .f-brand{font-weight:700;font-size:1.05rem;color:var(--footer-text);margin-bottom:8px;}
-footer p{color:rgba(243,233,214,.65);font-size:.88rem;}
+footer{background:linear-gradient(180deg, var(--pre-footer, var(--cream)), var(--cream) 110px);color:var(--ink);padding:44px 0 30px;text-align:center;}
+footer .f-brand{font-weight:700;font-size:1.05rem;color:var(--clay-dark);margin-bottom:8px;}
+footer p{color:var(--ink-soft);font-size:.88rem;}
 footer .f-links{margin-top:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:18px;font-size:.85rem;}
-footer .f-links a{color:rgba(243,233,214,.8);transition:color .2s;}
-footer .f-links a:hover{color:var(--gold);}
+footer .f-links a{color:var(--ink-soft);transition:color .2s;}
+footer .f-links a:hover{color:var(--clay);}
 
 /* ===================== FAQ Bot Widget ===================== */
 #faq-toggle{
