@@ -260,7 +260,7 @@ body{
 }
 
 /* ===================== Footer ===================== */
-footer{background:linear-gradient(180deg, var(--beige), var(--footer-bg) 110px);color:var(--footer-text);padding:44px 0 30px;text-align:center;}
+footer{background:linear-gradient(180deg, var(--pre-footer, var(--beige)), var(--footer-bg) 110px);color:var(--footer-text);padding:44px 0 30px;text-align:center;}
 footer .f-brand{font-weight:700;font-size:1.05rem;color:var(--footer-text);margin-bottom:8px;}
 footer p{color:rgba(243,233,214,.65);font-size:.88rem;}
 footer .f-links{margin-top:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:18px;font-size:.85rem;}
