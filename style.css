@@ -19,6 +19,7 @@
   /* fixed tokens: stay constant across themes (footer stays a stable dark band) */
   --footer-bg:#3E2B1E;
   --footer-text:#F3E9D6;
+  --footer-tone:#E6CCA3;
   --cream-rgb:251,245,234;
 }
 
@@ -37,6 +38,7 @@
   --border-soft:rgba(243,233,214,.14);
   --shadow-soft:0 12px 30px -12px rgba(0,0,0,.55);
   --cream-rgb:46,34,25;
+  --footer-tone:#170E09;
 }
 :root[data-theme="dark"] body{
   background-image:radial-gradient(circle at 1px 1px, rgba(243,233,214,.05) 1px, transparent 1px);
@@ -263,7 +265,7 @@ body{
 }
 
 /* ===================== Footer ===================== */
-footer{background:linear-gradient(180deg, var(--pre-footer, var(--cream)), var(--cream) 110px);color:var(--ink);padding:44px 0 30px;text-align:center;}
+footer{background:linear-gradient(180deg, var(--pre-footer, var(--cream)), var(--footer-tone) 110px);color:var(--ink);padding:44px 0 30px;text-align:center;}
 footer .f-brand{font-weight:700;font-size:1.05rem;color:var(--clay-dark);margin-bottom:8px;}
 footer p{color:var(--ink-soft);font-size:.88rem;}
 footer .f-links{margin-top:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:18px;font-size:.85rem;}
