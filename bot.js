@@ -1,104 +1,117 @@
 (function(){
-  var QA = [
-    {
-      q: "مين محمد صبري؟",
-      a: "رائد فن الباستيل في مصر (1917-2018). درس التصوير بكلية الفنون التطبيقية بالقاهرة، وحصل على الأستاذية من أكاديمية سان فرناندو في مدريد، واشتهر بتصوير حارات القاهرة وضوئها المميز بألوان الباستيل."
-    },
-    {
-      q: "مين رمسيس ويصا واصف؟",
-      a: "معماري ومربٍّ مصري (1911-1974) درس العمارة في باريس، وآمن أن كل طفل يحمل فناناً بداخله. أسّس تجربة الحرانية لتعليم النسيج اليدوي، وصمّم مبانٍ بالقباب والأقبية من غير خرسانة مسلحة."
-    },
-    {
-      q: "مين عبد الغني الشال؟",
-      a: "فنان تشكيلي وباحث في التراث الشعبي (1928-1999)، حاصل على الدكتوراه من جامعة القاهرة. جاب قرى مصر ليدرس الفنون الفطرية، وألّف كتاب \"عروسة المولد\"، واستخدم الرموز الشعبية في لوحاته."
-    },
-    {
-      q: "إيه هي تجربة الحرانية؟",
-      a: "تجربة بدأها رمسيس ويصا واصف سنة 1952 في قرية الحرانية بالجيزة، لتعليم أطفال القرية فن النسيج المرسم بثلاث قواعد صارمة: لا رسومات مسبقة، لا تدخل خارجي، ولا آلات؛ النساج ينسج من خياله فقط."
-    },
-    {
-      q: "إيه القواعد التلاتة في نسيج الحرانية؟",
-      a: "لا رسومات مسبقة (النساج يعمل من خياله)، لا تدخل خارجي من المعلمين، ولا استخدام لأي آلات — كل حاجة بتتعمل بإيدين النساج بالكامل."
-    },
-    {
-      q: "إيه هو فن الباستيل؟",
-      a: "أسلوب تصوير بألوان طباشيرية صعبة التحكم، اشتهر بيه محمد صبري في التقاط الضوء المصري بدقة، ووثّق بيه حارات القاهرة وبيوتها الإسلامية ومساجدها."
-    },
-    {
-      q: "فين لوحات محمد صبري موجودة دلوقتي؟",
-      a: "أعماله مقتناة في متاحف عالمية زي متحف البرادو بإسبانيا (اللي أقام فيه معرضاً خاصاً، وهو الفنان المصري الوحيد اللي عمل كده)، وكمان في مدريد وواشنطن وجامعة الدول العربية."
-    },
-    {
-      q: "إيه اللي وثّقه عبد الغني الشال في بحثه؟",
-      a: "ركّز في أبحاثه على الوشم، والعرائس الشعبية، والموالد، والحصير المصري، ووثّق كل ده من خلال جولات ميدانية في قرى مصر، مش من خلف المكتب."
-    },
-    {
-      q: "إيه العلاقة بين التلاتة؟",
-      a: "شكّلوا معاً ثلاثية الوعي بالتراث المصري: محمد صبري رسم الهوية باللون، رمسيس ويصا واصف نسجها بالممارسة اليدوية، وعبد الغني الشال حلّلها بالبحث العلمي — كل واحد فيهم كمّل التاني."
-    },
-    {
-      q: "إيه أهم جوايز حصل عليها الثلاثة؟",
-      a: "محمد صبري حصل على وسام الاستحقاق المدني من إسبانيا وجائزة الدولة التقديرية في الفنون. رمسيس ويصا واصف حصل على جائزة آغا خان للعمارة عام 1983. وعبد الغني الشال أستاذ متفرغ خرّج أجيال من الفنانين."
-    }
+  var WORKER_URL = 'https://cool-king-57d7.mezooalex2012.workers.dev';
+  var SITE_ID = 'heritage';
+
+  var STARTERS = [
+    'مين محمد صبري؟',
+    'إيه هي تجربة الحرانية؟',
+    'إيه العلاقة بين التلاتة؟'
   ];
 
   var toggle = document.getElementById('faq-toggle');
   var panel = document.getElementById('faq-panel');
   var closeBtn = document.getElementById('faq-close');
-  var list = document.getElementById('faqList');
-  var search = document.getElementById('faq-search');
-  if(!toggle || !panel || !list) return;
+  var messages = document.getElementById('faqMessages');
+  var form = document.getElementById('faqForm');
+  var input = document.getElementById('faq-input');
+  var sendBtn = document.getElementById('faq-send');
+  var starterWrap = document.getElementById('faqStarters');
+  if(!toggle || !panel || !messages || !form || !input) return;
 
-  function renderList(items){
-    list.innerHTML = '';
-    if(items.length === 0){
-      var empty = document.createElement('p');
-      empty.className = 'faq-empty';
-      empty.textContent = 'مفيش سؤال متطابق، جرّب كلمة تانية.';
-      list.appendChild(empty);
-      return;
-    }
-    items.forEach(function(item, idx){
-      var wrap = document.createElement('div');
-      wrap.className = 'faq-item';
+  var sending = false;
+  var lastSendAt = 0;
 
-      var qBtn = document.createElement('button');
-      qBtn.className = 'faq-q';
-      qBtn.setAttribute('aria-expanded', 'false');
-      qBtn.innerHTML = '<span>' + item.q + '</span><i class="fa-solid fa-chevron-down"></i>';
+  function addBubble(text, who){
+    var bubble = document.createElement('div');
+    bubble.className = 'faq-bubble ' + (who === 'user' ? 'faq-bubble-user' : 'faq-bubble-bot');
+    var p = document.createElement('p');
+    p.textContent = text;
+    bubble.appendChild(p);
+    messages.appendChild(bubble);
+    messages.scrollTop = messages.scrollHeight;
+    return bubble;
+  }
 
-      var aBox = document.createElement('div');
-      aBox.className = 'faq-a';
-      var aP = document.createElement('p');
-      aP.textContent = item.a;
-      aBox.appendChild(aP);
+  function addTyping(){
+    var bubble = document.createElement('div');
+    bubble.className = 'faq-bubble faq-bubble-bot faq-typing';
+    bubble.innerHTML = '<span></span><span></span><span></span>';
+    messages.appendChild(bubble);
+    messages.scrollTop = messages.scrollHeight;
+    return bubble;
+  }
 
-      qBtn.addEventListener('click', function(){
-        var isOpen = wrap.classList.contains('open');
-        list.querySelectorAll('.faq-item.open').forEach(function(el){
-          el.classList.remove('open');
-          el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
-        });
-        if(!isOpen){
-          wrap.classList.add('open');
-          qBtn.setAttribute('aria-expanded', 'true');
-        }
-      });
-
-      wrap.appendChild(qBtn);
-      wrap.appendChild(aBox);
-      list.appendChild(wrap);
+  function renderStarters(){
+    if(!starterWrap) return;
+    starterWrap.innerHTML = '';
+    STARTERS.forEach(function(q){
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'faq-chip';
+      chip.textContent = q;
+      chip.addEventListener('click', function(){ sendMessage(q); });
+      starterWrap.appendChild(chip);
     });
   }
 
-  renderList(QA);
+  function setSending(state){
+    sending = state;
+    if(sendBtn) sendBtn.disabled = state;
+    if(input) input.disabled = state;
+  }
+
+  function sendMessage(text){
+    text = (text || '').trim();
+    if(!text || sending) return;
+
+    var now = Date.now();
+    if(now - lastSendAt < 2000){
+      addBubble('من فضلك استنى ثانيتين بين كل سؤال والتاني.', 'bot');
+      return;
+    }
+    lastSendAt = now;
+
+    if(starterWrap) starterWrap.style.display = 'none';
+    addBubble(text, 'user');
+    input.value = '';
+    setSending(true);
+    var typingBubble = addTyping();
+
+    fetch(WORKER_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({site: SITE_ID, message: text})
+    })
+    .then(function(res){
+      if(!res.ok) throw new Error('bad status');
+      return res.json();
+    })
+    .then(function(data){
+      typingBubble.remove();
+      addBubble(data.answer || 'معلش، مقدرتش أجاوب دلوقتي، جرب تاني.', 'bot');
+    })
+    .catch(function(){
+      typingBubble.remove();
+      addBubble('في مشكلة في الاتصال دلوقتي، جرب تاني بعد شوية.', 'bot');
+    })
+    .finally(function(){
+      setSending(false);
+    });
+  }
+
+  renderStarters();
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    sendMessage(input.value);
+  });
 
   function openPanel(){
     panel.classList.add('open');
     toggle.setAttribute('aria-expanded', 'true');
     document.addEventListener('click', outsideClick);
     document.addEventListener('keydown', onEsc);
-    if(search) search.focus({preventScroll:true});
+    if(input) input.focus({preventScroll:true});
   }
   function closePanel(){
     panel.classList.remove('open');
@@ -119,17 +132,6 @@
     if(panel.classList.contains('open')) closePanel(); else openPanel();
   });
   if(closeBtn) closeBtn.addEventListener('click', closePanel);
-
-  if(search){
-    search.addEventListener('input', function(){
-      var term = search.value.trim();
-      if(!term){ renderList(QA); return; }
-      var filtered = QA.filter(function(item){
-        return item.q.indexOf(term) !== -1 || item.a.indexOf(term) !== -1;
-      });
-      renderList(filtered);
-    });
-  }
 
   // hide the floating button (slide it off-screen) once the footer area is reached
   var footerEl = document.querySelector('footer');
