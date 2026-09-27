@@ -66,4 +66,18 @@
   } else {
     revealEls.forEach(function(el){ el.classList.add('in-view'); });
   }
+
+  // ---------- external link click tracking (Google Analytics) ----------
+  document.querySelectorAll('a[target="_blank"]').forEach(function(a){
+    a.addEventListener('click', function(){
+      if(typeof gtag === 'function'){
+        var host = 'unknown';
+        try{ host = new URL(a.href).hostname; }catch(e){}
+        gtag('event', 'external_link_click', {
+          link_domain: host,
+          page_path: window.location.pathname
+        });
+      }
+    });
+  });
 })();
